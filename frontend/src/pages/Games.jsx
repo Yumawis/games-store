@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import { useGetAllGamesQuery } from "../services/gameService";
-import CardGame from "../components/CardGame";
+import CardGame from "../components/cards/CardGame";
 
 const Games = () => {
   const { data: games, isLoading } = useGetAllGamesQuery();

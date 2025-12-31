@@ -1,13 +1,14 @@
 import Games from "../pages/Games";
-import CreateGame from "../pages/CreateGame";
 import { Route, Routes } from "react-router-dom";
 import { ROUTES } from "../constants/routes";
+import MainLayout from "../components/layouts/MainLayout";
 
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route path={ROUTES.GAMES} element={<Games />} />
-      <Route path={ROUTES.CREATE_GAME} element={<CreateGame />} />
+      <Route element={<MainLayout />}>
+        <Route path={ROUTES.GAMES} element={<Games />} />
+      </Route>
     </Routes>
   );
 };
