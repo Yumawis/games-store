@@ -1,6 +1,6 @@
 # 🎮 Games Store
 
-Aplicación web para la gestión de una tienda de videojuegos, donde se pueden registrar videojuegos con información como nombre, fecha de creación, categoría e imagen.
+Aplicación web full-stack para la gestión de una tienda de videojuegos, donde se pueden registrar videojuegos con información como nombre, fecha de creación, categoría e imagen.
 El frontend cuenta con un botón que redirige a una página que muestra todos los videojuegos en formato de tarjetas (cards), donde se visualizan el nombre, la imagen, la categoría y la fecha de creación de cada videojuego y un modal para registrar un nuevo videojuego.
 
 ---
@@ -51,7 +51,7 @@ Esto levantará el servidor Express en el puerto configurado (por defecto 4000).
 cd ../frontend
 pnpm run dev
 ```
-Esto iniciará la aplicación React.js (por defecto en `http://localhost:5173`).
+Esto iniciará la aplicación React.js ( en `http://localhost:3000`).
 
 ---
 
