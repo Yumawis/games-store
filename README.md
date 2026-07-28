@@ -59,7 +59,7 @@ Esto iniciará la aplicación React.js ( en `http://localhost:3000`).
 
 1. El usuario ingresa a la aplicación.
 2. No es necesario autenticarse para ver el listado de los juegos registrados.
-3. Luego de ingresar se verá una pantalla que muestra las cardas de los juegos registrados.  
+3. Luego de ingresar se verá una pantalla que muestra las cards de los juegos registrados.  
 4. Cada card muestra la información de los juegos como lo es su nombre, fecha de creación, categoría e imagen.
 5. Para registrar un nuevo juego, desde la pagina principal hacer click en el botón de agregar juego, este abrirá un modal.
 6. Completa el formulario con nombre, fecha de creación, categoría e imagen y al guardar quedará registrado en el sistema.
