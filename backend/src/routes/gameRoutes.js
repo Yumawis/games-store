@@ -1,9 +1,10 @@
-const express = require("express");
-const router = express.Router();
+const express = require("express")
+const router = express.Router()
 
-const { createGame, getAllGames } = require("../controllers/gameController");
+const auth = require("../middleware/auth")
+const { createGame, getAllGames } = require("../controllers/gameController")
 
-router.post("/create", createGame);
-router.get("/", getAllGames);
+router.post("/create", auth, createGame)
+router.get("/", auth, getAllGames)
 
-module.exports = router;
+module.exports = router

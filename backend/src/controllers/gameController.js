@@ -1,7 +1,16 @@
 const Game = require("../models/Game");
+const { validateCreateGame } = require("../validators/gameValidator");
 
 const createGame = async (req, res) => {
   try {
+    const errors = validateCreateGame(req.body);
+
+    if (Object.keys(errors).length > 0) {
+      return res.status(400).json({
+        data: { message: "Datos inválidos", errors },
+      });
+    }
+
     const { name, creationDate, categoryType, imageBase64 } = req.body;
 
     const existingGame = await Game.findOne({ name });
