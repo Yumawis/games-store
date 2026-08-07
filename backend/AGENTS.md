@@ -1,37 +1,70 @@
 # games-store backend
 
-Express + Mongoose API (CommonJS).
+NestJS + Mongoose (TypeScript) REST API.
 
 ## Commands
 
 Run from `backend/`:
 
-| Command    | Action                           |
-| ---------- | -------------------------------- |
-| `pnpm dev` | `nodemon server.js` on port 4000 |
+| Command              | Action                         |
+| -------------------- | ------------------------------ |
+| `pnpm build`         | Compile to `dist/`             |
+| `pnpm start`         | Run from source                |
+| `pnpm start:dev`     | Watch mode (on port 4000)      |
+| `pnpm start:prod`    | Run compiled `dist/main.js`    |
+| `pnpm format`        | Format with Prettier           |
 
-No tests, typecheck, linter or formatter.
+There are no tests or linter configured.
 
 ## API
 
-Prefix: `/api/v1/games-store`
+Prefix (global): `/api/v1/games-store`
 
-| Method | Path            | Action         |
-| ------ | --------------- | -------------- |
-| GET    | `/games`        | List all games |
-| POST   | `/games/create` | Create a game  |
+| Method | Path          | Auth | Action           |
+| ------ | ------------- | ---- | ---------------- |
+| POST   | `/auth/register` | no   | Register user    |
+| POST   | `/auth/login`    | no   | Login, get JWT   |
+| POST   | `/games/create`  | yes  | Create a game    |
+| GET    | `/games`         | yes  | List all games   |
 
-Errors return status 420 with `{ data: { message, error } }`.
+Assemble normally. Success responses use `{ message, result }`. Errors are raised as
+NestJS HTTP exceptions and formatted by the global filter
+(`src/common/filters/all-exceptions.filter.ts`) as
+`{ data: { message, error?, errors? } }` with standard status codes
+(400 invalid input, 401 unauthorized, 409 conflict, 500 internal).
 
-## Setup
+The `games` routes are protected by `JwtAuthGuard`
+(`src/common/guards/jwt-auth.guard.ts`); send `Authorization: Bearer <token>`.
 
-- Requires MongoDB at `DATA_BASE_URL` in `.env` (default `mongodb://127.0.0.1:27017/games-store`)
-- Config: `src/config/app.config.json` — `PORT` (4000), `ALLOWED_CORS` (`["http://localhost:3000"]`)
-- Entrypoint: `src/server.js`
+## Configuration
 
-## Model
+Managed by `@nestjs/config` (`src/config/configuration.ts`) reading `.env`.
 
-`Game` (`src/models/Game.js`):
+| Variable          | Default                              | Notes               |
+| ----------------- | ------------------------------------ | ------------------- |
+| `PORT`            | `4000`                               | HTTP port           |
+| `DATA_BASE_URL`   | `mongodb://127.0.0.1:27017/games-store` | MongoDB URI        |
+| `JWT_SECRET`      | `fallback-secret`                    | JWT signing secret  |
+| `JWT_EXPIRES_IN`  | `7d`                                 | Token lifetime      |
+| `ALLOWED_CORS`    | `http://localhost:3000`              | Comma-separated origins |
+
+Entrypoint: `src/main.ts` (sets global prefix, CORS, global pipe & filter).
+Root module: `src/app.module.ts`.
+
+## Structure
+
+Feature-based modules under `src/modules/`:
+
+- `users/` — `User` schema, `UsersService` (also exports hashing)
+- `auth/` — `AuthController`, `AuthService`, DTOs, JWT registration
+- `games/` — `GamesController`, `GamesService`, DTO, schema
+
+Shared infra in `src/common/`: guards, filters, pipes, decorators, constants,
+services.
+
+## Models
+
+### Game (`src/modules/games/schemas/game.schema.ts`)
 
 | Field          | Type   | Notes                                    |
 | -------------- | ------ | ---------------------------------------- |
@@ -40,4 +73,10 @@ Errors return status 420 with `{ data: { message, error } }`.
 | `categoryType` | String | enum: `Deportes` / `Terror` / `Aventura` |
 | `imageBase64`  | String | optional                                 |
 
-Categories constant in `src/constants/category.js` (`CATEGORY.SPORTS`, `CATEGORY.TERROR`, `CATEGORY.ADVENTURE`).
+### User (`src/modules/users/schemas/user.schema.ts`)
+
+`names`, `lastNames`, `email` (unique, lowercased), `password` (select:false,
+hashed with bcrypt).
+
+Categories catalogue in `src/common/constants/category.ts`
+(`CATEGORY`, `CATEGORY_VALUES`).
