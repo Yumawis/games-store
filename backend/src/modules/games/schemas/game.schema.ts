@@ -1,6 +1,9 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
-import { CATEGORY_VALUES, CategoryCatalogue } from '../../../common/constants/category';
+import {
+  CATEGORY_VALUES,
+  CategoryCatalogue,
+} from '../../../common/constants/category';
 
 export type GameDocument = HydratedDocument<Game>;
 

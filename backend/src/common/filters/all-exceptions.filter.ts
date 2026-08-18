@@ -38,8 +38,7 @@ export class AllExceptionsFilter implements ExceptionFilter {
       } else if (typeof exceptionRes === 'object' && exceptionRes !== null) {
         const res = exceptionRes as Record<string, unknown>;
         body = {
-          message:
-            this.stringify(res['message'], 'Error occurred') ?? 'Error',
+          message: this.stringify(res['message'], 'Error occurred') ?? 'Error',
           error: this.stringify(res['error']),
           errors:
             typeof res['errors'] === 'object' && res['errors'] !== null

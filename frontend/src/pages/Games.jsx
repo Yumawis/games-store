@@ -1,13 +1,13 @@
-import { Box, Typography } from "@mui/material";
-import { useGetAllGamesQuery } from "../services/gameService";
-import CardGame from "../components/cards/CardGame";
+import { Box, Typography } from '@mui/material'
+import CardGame from '../components/cards/CardGame'
+import { useGetAllGamesQuery } from '../services/gameService'
 
 const Games = () => {
-  const { data: games, isLoading } = useGetAllGamesQuery();
+  const { data: games, isLoading } = useGetAllGamesQuery()
 
   return (
     <Box
-      sx={{ width: "100%", display: "flex", flexDirection: "column", gap: 3 }}
+      sx={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 3 }}
     >
       <Typography>Juegos Actuales</Typography>
 
@@ -16,12 +16,12 @@ const Games = () => {
       ) : (
         <Box
           sx={{
-            width: "100%",
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+            width: '100%',
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
             gap: 3,
             padding: 2,
-            alignItems: "stretch",
+            alignItems: 'stretch',
           }}
         >
           {games?.map((game) => (
@@ -30,7 +30,7 @@ const Games = () => {
         </Box>
       )}
     </Box>
-  );
-};
+  )
+}
 
-export default Games;
+export default Games

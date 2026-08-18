@@ -6,35 +6,35 @@ import {
   Modal,
   TextField,
   Typography,
-} from "@mui/material";
-import { styled } from "@mui/material/styles";
-import { useCreateGameMutation } from "../../services/gameService";
-import { useEffect } from "react";
-import { Field, Form, Formik } from "formik";
-import { CATEGORY } from "../../constants/category";
+} from '@mui/material'
+import { styled } from '@mui/material/styles'
+import { Field, Form, Formik } from 'formik'
+import { useEffect } from 'react'
+import { CATEGORY } from '../../constants/category'
+import { useCreateGameMutation } from '../../services/gameService'
 
 const ModalContent = styled(Box)(({ theme }) => ({
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
   width: 400,
   backgroundColor: theme.palette.background.paper,
   boxShadow: theme.shadows[24],
   padding: theme.spacing(3),
   borderRadius: theme.shape.borderRadius,
-}));
+}))
 
 const AddGameModal = ({ open, handleClose }) => {
   const [createGame, { error, isError, isSuccess, isLoading }] =
-    useCreateGameMutation();
+    useCreateGameMutation()
 
   useEffect(() => {
     if (isSuccess) {
-      handleClose();
+      handleClose()
     }
-    if (isError) alert(error?.data?.message);
-  }, [error, isSuccess, handleClose, isError]);
+    if (isError) alert(error?.data?.message)
+  }, [error, isSuccess, handleClose, isError])
 
   return (
     <Modal open={open} onClose={handleClose}>
@@ -45,12 +45,12 @@ const AddGameModal = ({ open, handleClose }) => {
 
         <Formik
           initialValues={{
-            name: "",
-            creationDate: "",
-            categoryType: "",
+            name: '',
+            creationDate: '',
+            categoryType: '',
           }}
           onSubmit={(values) => {
-            createGame(values);
+            createGame(values)
           }}
         >
           {({ values, handleChange }) => (
@@ -90,7 +90,7 @@ const AddGameModal = ({ open, handleClose }) => {
                 <Box display="flex" justifyContent="flex-end" gap={1}>
                   <Button onClick={handleClose}>Cancelar</Button>
                   <Button type="submit" disabled={isLoading}>
-                    {isLoading ? "Guardando..." : "Guardar"}
+                    {isLoading ? 'Guardando...' : 'Guardar'}
                   </Button>
                 </Box>
               </Box>
@@ -99,7 +99,7 @@ const AddGameModal = ({ open, handleClose }) => {
         </Formik>
       </ModalContent>
     </Modal>
-  );
-};
+  )
+}
 
-export default AddGameModal;
+export default AddGameModal

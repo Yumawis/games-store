@@ -1,15 +1,15 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography } from '@mui/material'
 
 const CardGame = ({ game }) => {
   return (
     <Box
       sx={{
-        width: "100%",
-        display: "flex",
-        flexDirection: "column",
-        padding: "20px",
-        gap: "10px",
-        backgroundColor: "#ffffff",
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        padding: '20px',
+        gap: '10px',
+        backgroundColor: '#ffffff',
         boxShadow: 3,
       }}
     >
@@ -17,25 +17,25 @@ const CardGame = ({ game }) => {
 
       <Box
         sx={{
-          width: "100%",
-          height: "250px",
+          width: '100%',
+          height: '250px',
           borderRadius: 2,
-          overflow: "hidden",
-          backgroundColor: "#f2f2f2",
+          overflow: 'hidden',
+          backgroundColor: '#f2f2f2',
           boxShadow: 3,
         }}
       >
         <img
           src={`data:image/png;base64,${game?.imageBase64}`}
           alt={game.name}
-          style={{ width: "100%", height: "100%", objectFit: "cover" }}
+          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
         />
       </Box>
 
       <Box
         sx={{
-          display: "flex",
-          flexDirection: "column",
+          display: 'flex',
+          flexDirection: 'column',
           gap: 2,
         }}
       >
@@ -44,7 +44,7 @@ const CardGame = ({ game }) => {
         <Typography variant="h6">{game?.categoryType}</Typography>
       </Box>
     </Box>
-  );
-};
+  )
+}
 
-export default CardGame;
+export default CardGame

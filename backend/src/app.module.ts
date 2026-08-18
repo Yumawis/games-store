@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { MongooseModule } from '@nestjs/mongoose';
 import { APP_FILTER, APP_PIPE } from '@nestjs/core';
-import configuration from './config/configuration';
+import { MongooseModule } from '@nestjs/mongoose';
 import { AllExceptionsFilter } from './common/filters/all-exceptions.filter';
 import { AppValidationPipe } from './common/pipes/app-validation.pipe';
+import configuration from './config/configuration';
 import { AuthModule } from './modules/auth/auth.module';
 import { GamesModule } from './modules/games/games.module';
 import { UsersModule } from './modules/users/users.module';

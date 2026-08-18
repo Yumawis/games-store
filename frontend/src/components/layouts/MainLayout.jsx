@@ -1,21 +1,19 @@
-import { Outlet } from "react-router-dom";
-
-import { Box } from "@mui/material";
-
-import AppHeader from "../common/AppHeader";
-import { useState } from "react";
-import AddGameModal from "../modals/AddGameModal";
+import { Box } from '@mui/material'
+import { useState } from 'react'
+import { Outlet } from 'react-router-dom'
+import AppHeader from '../common/AppHeader'
+import AddGameModal from '../modals/AddGameModal'
 
 const MainLayout = () => {
-  const [modalOpen, setModalOPen] = useState(false);
+  const [modalOpen, setModalOPen] = useState(false)
 
   const handleOpenModal = () => {
-    setModalOPen(true);
-  };
+    setModalOPen(true)
+  }
 
   const handleCloseModal = () => {
-    setModalOPen(false);
-  };
+    setModalOPen(false)
+  }
 
   return (
     <Box>
@@ -26,7 +24,7 @@ const MainLayout = () => {
       </Box>
       <AddGameModal open={modalOpen} handleClose={handleCloseModal} />
     </Box>
-  );
-};
+  )
+}
 
-export default MainLayout;
+export default MainLayout

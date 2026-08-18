@@ -1,5 +1,5 @@
-import { IsIn, IsOptional, IsString, MaxLength } from 'class-validator';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { IsIn, IsOptional, IsString, MaxLength } from 'class-validator';
 import {
   CATEGORY_VALUES,
   CategoryCatalogue,

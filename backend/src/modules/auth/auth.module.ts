@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
-import { JwtModule, JwtSignOptions } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
+import { JwtModule, JwtSignOptions } from '@nestjs/jwt';
+import { UsersModule } from '../users/users.module';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
-import { UsersModule } from '../users/users.module';
 
 @Module({
   imports: [
@@ -15,8 +15,10 @@ import { UsersModule } from '../users/users.module';
         secret: config.getOrThrow<string>('jwt.secret'),
         signOptions: {
           expiresIn:
-            (config.get<string>('jwt.expiresIn', '7d') as JwtSignOptions['expiresIn']) ??
-            '7d',
+            (config.get<string>(
+              'jwt.expiresIn',
+              '7d',
+            ) as JwtSignOptions['expiresIn']) ?? '7d',
         },
       }),
     }),

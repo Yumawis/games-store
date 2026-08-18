@@ -1,11 +1,11 @@
-import { baseApi } from "../store/baseApi";
+import { baseApi } from '../store/baseApi'
 
 export const gameService = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     createGame: builder.mutation({
       query: ({ name, creationDate, categoryType, imageBase64 }) => ({
-        url: "games/create",
-        method: "POST",
+        url: 'games/create',
+        method: 'POST',
         body: { name, creationDate, categoryType, imageBase64 },
       }),
       transformResponse: (response) => response?.data?.result,
@@ -14,13 +14,13 @@ export const gameService = baseApi.injectEndpoints({
 
     getAllGames: builder.query({
       query: () => ({
-        url: "/games",
-        method: "GET",
+        url: '/games',
+        method: 'GET',
       }),
       transformResponse: (response) => response?.data?.result,
       transformErrorResponse: (response) => response?.data,
     }),
   }),
-});
+})
 
-export const { useCreateGameMutation, useGetAllGamesQuery } = gameService;
+export const { useCreateGameMutation, useGetAllGamesQuery } = gameService

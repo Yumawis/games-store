@@ -12,9 +12,26 @@ Run from `backend/`:
 | `pnpm start`         | Run from source                |
 | `pnpm start:dev`     | Watch mode (on port 4000)      |
 | `pnpm start:prod`    | Run compiled `dist/main.js`    |
-| `pnpm format`        | Format with Prettier           |
+| `pnpm format`        | Format with Biome              |
+| `pnpm format:check`  | Verify formatting (Biome)      |
+| `pnpm lint`          | Lint with Biome                |
+| `pnpm lint:fix`      | Lint with Biome, apply safe fixes |
+| `pnpm check`         | Lint + format check (Biome)    |
+| `pnpm check:fix`     | Apply safe Biome fixes         |
 
-There are no tests or linter configured.
+Biome config lives in `biome.json` (self-contained, not shared with the
+frontend). `useImportType` is disabled because NestJS relies on value imports
+for `emitDecoratorMetadata`-based DI. `useLiteralKeys` is disabled because the
+bracket access in the guard/filter is intentional.
+
+There are no tests configured.
+
+Git hooks are managed by Husky at the project root (`.husky/`): the
+`pre-commit` hook runs the root `pre-commit` script (`pnpm pre-commit`), which
+executes `lint-staged`. Each project declares its own `lint-staged` config in
+its `package.json`, so only staged files are run through Biome
+(`biome format --write`, `biome lint --write`, `biome check`) and the modified
+files are re-staged automatically.
 
 ## API
 

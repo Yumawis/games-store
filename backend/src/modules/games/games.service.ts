@@ -1,9 +1,8 @@
 import { ConflictException, Injectable } from '@nestjs/common';
-import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
-import { Game } from './schemas/game.schema';
-import { FlattenMaps } from 'mongoose';
+import { FlattenMaps, Model } from 'mongoose';
 import { CreateGameDto } from './dto/create-game.dto';
+import { Game } from './schemas/game.schema';
 
 export interface GameView {
   _id: string;
@@ -17,7 +16,9 @@ type LeanGame = FlattenMaps<Game> & { _id: unknown };
 
 @Injectable()
 export class GamesService {
-  constructor(@InjectModel(Game.name) private readonly gameModel: Model<Game>) {}
+  constructor(
+    @InjectModel(Game.name) private readonly gameModel: Model<Game>,
+  ) {}
 
   async create(dto: CreateGameDto): Promise<{
     message: string;

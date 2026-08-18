@@ -16,12 +16,12 @@ import {
   ApiTags,
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
-import { GamesService } from './games.service';
+import { ErrorEnvelopeDto } from '../../common/dto/error-response.dto';
+import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
 import { CreateGameDto } from './dto/create-game.dto';
 import { GameResponseDto } from './dto/game-response.dto';
 import { GamesListResponseDto } from './dto/games-list-response.dto';
-import { ErrorEnvelopeDto } from '../../common/dto/error-response.dto';
-import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
+import { GamesService } from './games.service';
 
 @ApiTags('games')
 @ApiBearerAuth('access-token')

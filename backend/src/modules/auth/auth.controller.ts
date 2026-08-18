@@ -8,12 +8,12 @@ import {
   ApiTags,
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
-import { AuthService, LoginResult, RegisterResult } from './auth.service';
-import { RegisterDto } from './dto/register.dto';
-import { LoginDto } from './dto/login.dto';
-import { RegisterResponseDto } from './dto/register-response.dto';
-import { LoginResponseDto } from './dto/login-response.dto';
 import { ErrorEnvelopeDto } from '../../common/dto/error-response.dto';
+import { AuthService, LoginResult, RegisterResult } from './auth.service';
+import { LoginDto } from './dto/login.dto';
+import { LoginResponseDto } from './dto/login-response.dto';
+import { RegisterDto } from './dto/register.dto';
+import { RegisterResponseDto } from './dto/register-response.dto';
 
 @ApiTags('auth')
 @Controller('auth')

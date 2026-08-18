@@ -1,4 +1,4 @@
 export const ROUTES = {
-    GAMES: "/",
-    CREATE_GAME: "/create-game"
+  GAMES: '/',
+  CREATE_GAME: '/create-game',
 }
