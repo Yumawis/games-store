@@ -3,7 +3,8 @@ import './globals.css'
 
 export const metadata: Metadata = {
   title: 'Games Store',
-  description: 'Games Store',
+  description:
+    'Gestiona y explora el catálogo de juegos de tu tienda de manera eficiente y sencilla.',
 }
 
 export default function RootLayout({
