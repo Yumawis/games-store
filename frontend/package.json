@@ -6,12 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "format": "biome format --write ./app ./lib",
-    "format:check": "biome format ./app ./lib",
-    "lint": "biome lint ./app ./lib",
-    "lint:fix": "biome lint --write ./app ./lib",
-    "check": "biome check ./app ./lib",
-    "check:fix": "biome check --write ./app ./lib"
+    "format": "biome format --write ./app ./lib ./api ./types",
+    "format:check": "biome format ./app ./lib ./api ./types",
+    "lint": "biome lint ./app ./lib ./api ./types",
+    "lint:fix": "biome lint --write ./app ./lib ./api ./types",
+    "check": "biome check ./app ./lib ./api ./types",
+    "check:fix": "biome check --write ./app ./lib ./api ./types"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.3.3",
@@ -23,7 +23,8 @@
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "tailwind-merge": "^3.6.0",
-    "tailwindcss": "^4.3.3"
+    "tailwindcss": "^4.3.3",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.5.9",
