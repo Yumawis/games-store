@@ -4,13 +4,13 @@ const API_BASE_URL = process.env.NEXT_PUBLIC_GAMES_STORE_API_URL ?? ''
 
 function getAuthHeaders(): Record<string, string> {
   if (typeof window === 'undefined') return {}
-  const token = localStorage.getItem('token')
+  const token = auth.getToken()
   return token ? { Authorization: `Bearer ${token}` } : {}
 }
 
 function handle401(): never {
   if (typeof window !== 'undefined') {
-    localStorage.removeItem('token')
+    auth.clearToken()
     window.location.href = '/'
   }
   throw new Error('Sesion expirada')
@@ -44,6 +44,24 @@ async function request<T>(
   }
 
   return body as T
+}
+
+export const auth = {
+  setToken(token: string): void {
+    localStorage.setItem('token', token)
+  },
+
+  clearToken(): void {
+    localStorage.removeItem('token')
+  },
+
+  getToken(): string | null {
+    return localStorage.getItem('token')
+  },
+
+  isAuthenticated(): boolean {
+    return !!localStorage.getItem('token')
+  },
 }
 
 export const apiClient = {
