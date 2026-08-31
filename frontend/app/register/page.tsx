@@ -101,7 +101,7 @@ export default function RegisterPage() {
 
           <div>
             <label htmlFor="password" className="block text-sm font-medium">
-              Contrasena
+              Contraseña
             </label>
             <input
               id="password"
