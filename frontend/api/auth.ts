@@ -7,12 +7,14 @@ import type {
   RegisterResponse,
 } from '../types/auth'
 
-export function login(input: LoginInput): Promise<ApiResponse<LoginResponse>> {
+const login = (input: LoginInput): Promise<ApiResponse<LoginResponse>> => {
   return apiClient.post<ApiResponse<LoginResponse>>('/auth/login', input)
 }
 
-export function register(
+const register = (
   input: RegisterInput,
-): Promise<ApiResponse<RegisterResponse>> {
+): Promise<ApiResponse<RegisterResponse>> => {
   return apiClient.post<ApiResponse<RegisterResponse>>('/auth/register', input)
 }
+
+export { login, register }

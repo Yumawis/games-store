@@ -2,13 +2,13 @@ import type { ApiError } from '../types/api'
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_GAMES_STORE_API_URL ?? ''
 
-function getAuthHeaders(): Record<string, string> {
+const getAuthHeaders = (): Record<string, string> => {
   if (typeof window === 'undefined') return {}
   const token = auth.getToken()
   return token ? { Authorization: `Bearer ${token}` } : {}
 }
 
-function handle401(): never {
+const handle401 = (): never => {
   if (typeof window !== 'undefined') {
     auth.clearToken()
     window.location.href = '/'
@@ -16,10 +16,10 @@ function handle401(): never {
   throw new Error('Sesion expirada')
 }
 
-async function request<T>(
+const request = async <T>(
   endpoint: string,
   options: RequestInit = {},
-): Promise<T> {
+): Promise<T> => {
   const url = `${API_BASE_URL}${endpoint}`
   const headers: Record<string, string> = {
     'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ async function request<T>(
   return body as T
 }
 
-export const auth = {
+const auth = {
   setToken(token: string): void {
     localStorage.setItem('token', token)
   },
@@ -58,13 +58,9 @@ export const auth = {
   getToken(): string | null {
     return localStorage.getItem('token')
   },
-
-  isAuthenticated(): boolean {
-    return !!localStorage.getItem('token')
-  },
 }
 
-export const apiClient = {
+const apiClient = {
   get<T>(endpoint: string): Promise<T> {
     return request<T>(endpoint, { method: 'GET' })
   },
@@ -76,3 +72,5 @@ export const apiClient = {
     })
   },
 }
+
+export { apiClient, auth }

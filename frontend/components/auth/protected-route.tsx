@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 import { useAuth } from '../../lib/auth-context'
 
-export function ProtectedRoute({ children }: { children: React.ReactNode }) {
+const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const { isAuthenticated, isLoading } = useAuth()
   const router = useRouter()
 
@@ -28,3 +28,5 @@ export function ProtectedRoute({ children }: { children: React.ReactNode }) {
 
   return <>{children}</>
 }
+
+export { ProtectedRoute }

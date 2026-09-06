@@ -1,6 +1,6 @@
 import { ProtectedRoute } from '../components/auth/protected-route'
 
-export default function Home() {
+const Home = () => {
   return (
     <ProtectedRoute>
       <main>
@@ -9,3 +9,5 @@ export default function Home() {
     </ProtectedRoute>
   )
 }
+
+export default Home
