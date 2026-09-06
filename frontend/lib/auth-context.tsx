@@ -1,12 +1,6 @@
 'use client'
 
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-} from 'react'
+import { createContext, use, useCallback, useEffect, useState } from 'react'
 import type { User } from '../types/user'
 import { auth } from './api-client'
 
@@ -21,7 +15,7 @@ interface AuthContextValue {
 
 const AuthContext = createContext<AuthContextValue | null>(null)
 
-export function AuthProvider({ children }: { children: React.ReactNode }) {
+const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<User | null>(null)
   const [token, setToken] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState(true)
@@ -62,10 +56,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   )
 }
 
-export function useAuth(): AuthContextValue {
-  const ctx = useContext(AuthContext)
+const useAuth = (): AuthContextValue => {
+  const ctx = use(AuthContext)
   if (!ctx) {
     throw new Error('useAuth debe utilizarse dentro de AuthProvider')
   }
   return ctx
 }
+
+export { AuthProvider, useAuth }
