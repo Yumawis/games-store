@@ -41,6 +41,7 @@
   --input: oklch(0.922 0 0);
   --ring: oklch(0.708 0 0);
   --radius: 0.625rem;
+  --disabled-opacity: 0.7;
 }
 
 .dark {
@@ -69,4 +70,9 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+@utility disabled-appearance {
+  cursor: not-allowed;
+  opacity: var(--disabled-opacity);
 }
