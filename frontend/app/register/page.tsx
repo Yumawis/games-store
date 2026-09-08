@@ -57,7 +57,7 @@ const RegisterPage = () => {
                 id="names"
                 name="names"
                 type="text"
-                placeholder="Tus nombres"
+                placeholder="Nombres"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.names}
@@ -75,7 +75,7 @@ const RegisterPage = () => {
                 id="lastNames"
                 name="lastNames"
                 type="text"
-                placeholder="Tus apellidos"
+                placeholder="Apellidos"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.lastNames}
