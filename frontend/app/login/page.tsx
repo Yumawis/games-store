@@ -41,7 +41,7 @@ const LoginPage = () => {
     <main className="flex min-h-[calc(100vh-4rem)] items-center justify-center">
       <Card className="w-full max-w-sm">
         <CardHeader className="text-center">
-          <CardTitle>Iniciar Sesion</CardTitle>
+          <CardTitle>Inicia Sesión</CardTitle>
         </CardHeader>
         <CardContent>
           <form onSubmit={formik.handleSubmit} className="space-y-4">
@@ -50,7 +50,7 @@ const LoginPage = () => {
             )}
 
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email">Correo Electrónico</Label>
               <Input
                 id="email"
                 name="email"
@@ -68,7 +68,7 @@ const LoginPage = () => {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="password">Contrasena</Label>
+              <Label htmlFor="password">Contraseña</Label>
               <Input
                 id="password"
                 name="password"
@@ -97,7 +97,7 @@ const LoginPage = () => {
           <p className="mt-4 text-center text-sm text-muted-foreground">
             No tienes cuenta?{' '}
             <Link href="/register" className="text-primary hover:underline">
-              Registrate
+              Regístrate
             </Link>
           </p>
         </CardContent>
