@@ -31,7 +31,7 @@ const LoginPage = () => {
         },
         onError: (error: unknown) => {
           const apiError = error as ApiError
-          setFormError(apiError?.data?.message ?? 'Error al iniciar sesion')
+          setFormError(apiError?.data?.message ?? 'Error al iniciar sesión')
         },
       })
     },
@@ -41,7 +41,7 @@ const LoginPage = () => {
     <main className="flex min-h-[calc(100vh-4rem)] items-center justify-center">
       <Card className="w-full max-w-sm">
         <CardHeader className="text-center">
-          <CardTitle>Inicia Sesión</CardTitle>
+          <CardTitle>Iniciar sesión</CardTitle>
         </CardHeader>
         <CardContent>
           <form onSubmit={formik.handleSubmit} className="space-y-4">
@@ -50,11 +50,13 @@ const LoginPage = () => {
             )}
 
             <div className="space-y-2">
-              <Label htmlFor="email">Correo Electrónico</Label>
+              <Label htmlFor="email">Correo electrónico</Label>
               <Input
                 id="email"
                 name="email"
                 type="email"
+                autoComplete="email"
+                spellCheck={false}
                 placeholder="tu@email.com"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
@@ -73,6 +75,7 @@ const LoginPage = () => {
                 id="password"
                 name="password"
                 type="password"
+                autoComplete="current-password"
                 placeholder="••••••"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
@@ -90,12 +93,12 @@ const LoginPage = () => {
               className="w-full"
               disabled={loginMutation.isPending}
             >
-              {loginMutation.isPending ? 'Ingresando...' : 'Ingresar'}
+              {loginMutation.isPending ? 'Ingresando…' : 'Iniciar sesión'}
             </Button>
           </form>
 
           <p className="mt-4 text-center text-sm text-muted-foreground">
-            No tienes cuenta?{' '}
+            ¿No tienes cuenta?{' '}
             <Link href="/register" className="text-primary hover:underline">
               Regístrate
             </Link>
