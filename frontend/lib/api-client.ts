@@ -13,7 +13,7 @@ const handle401 = (): never => {
     auth.clearToken()
     window.location.href = '/'
   }
-  throw new Error('Sesion expirada')
+  throw new Error('Sesión expirada')
 }
 
 const request = async <T>(

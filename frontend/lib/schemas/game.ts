@@ -4,9 +4,9 @@ import { CATEGORY_VALUES } from '../../types/game'
 export const createGameSchema = z.object({
   name: z
     .string()
-    .min(1, 'Nombre es requerido')
-    .max(200, 'Maximo 200 caracteres'),
-  creationDate: z.string().min(1, 'Fecha de creacion es requerida'),
+    .min(1, 'El nombre es obligatorio')
+    .max(200, 'Máximo 200 caracteres'),
+  creationDate: z.string().min(1, 'La fecha de creación es obligatoria'),
   categoryType: z.enum(CATEGORY_VALUES as unknown as [string, ...string[]]),
   imageBase64: z.string().optional(),
 })

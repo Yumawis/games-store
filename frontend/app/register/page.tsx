@@ -43,7 +43,7 @@ const RegisterPage = () => {
     <main className="flex min-h-[calc(100vh-4rem)] items-center justify-center">
       <Card className="w-full max-w-sm">
         <CardHeader className="text-center">
-          <CardTitle>Crear Cuenta</CardTitle>
+          <CardTitle>Crear cuenta</CardTitle>
         </CardHeader>
         <CardContent>
           <form onSubmit={formik.handleSubmit} className="space-y-4">
@@ -57,7 +57,8 @@ const RegisterPage = () => {
                 id="names"
                 name="names"
                 type="text"
-                placeholder="Nombres"
+                autoComplete="given-name"
+                placeholder="Ingresa tus nombres"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.names}
@@ -75,7 +76,8 @@ const RegisterPage = () => {
                 id="lastNames"
                 name="lastNames"
                 type="text"
-                placeholder="Apellidos"
+                autoComplete="family-name"
+                placeholder="Ingresa tus apellidos"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.lastNames}
@@ -88,11 +90,13 @@ const RegisterPage = () => {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email">Correo electrónico</Label>
               <Input
                 id="email"
                 name="email"
                 type="email"
+                autoComplete="email"
+                spellCheck={false}
                 placeholder="tu@email.com"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
@@ -106,11 +110,12 @@ const RegisterPage = () => {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="password">Contrasena</Label>
+              <Label htmlFor="password">Contraseña</Label>
               <Input
                 id="password"
                 name="password"
                 type="password"
+                autoComplete="new-password"
                 placeholder="••••••"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
@@ -128,14 +133,14 @@ const RegisterPage = () => {
               className="w-full"
               disabled={registerMutation.isPending}
             >
-              {registerMutation.isPending ? 'Creando...' : 'Crear Cuenta'}
+              {registerMutation.isPending ? 'Creando…' : 'Crear cuenta'}
             </Button>
           </form>
 
           <p className="mt-4 text-center text-sm text-muted-foreground">
-            Ya tienes cuenta?{' '}
+            ¿Ya tienes cuenta?{' '}
             <Link href="/login" className="text-primary hover:underline">
-              Inicia sesion
+              Iniciar sesión
             </Link>
           </p>
         </CardContent>
