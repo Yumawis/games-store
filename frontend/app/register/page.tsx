@@ -9,7 +9,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { useRegister } from '@/hooks/use-register'
-import { registerSchema } from '@/lib/schemas/auth'
+import { registerSchema, validateWith } from '@/lib/schemas/auth'
 import type { ApiError } from '@/types/api'
 
 const RegisterPage = () => {
@@ -24,7 +24,7 @@ const RegisterPage = () => {
       email: '',
       password: '',
     },
-    validationSchema: registerSchema,
+    validate: validateWith(registerSchema),
     onSubmit: (values) => {
       setFormError(null)
       registerMutation.mutate(values, {

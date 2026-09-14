@@ -1,8 +1,8 @@
-import { z } from 'zod/v4'
+import { z } from 'zod/v4/mini'
 
 export const loginSchema = z.object({
   email: z.email('Correo electrónico inválido'),
-  password: z.string().min(6, 'Mínimo 6 caracteres'),
+  password: z.string().check(z.minLength(6, 'Mínimo 6 caracteres')),
 })
 
 export type LoginSchema = z.infer<typeof loginSchema>
@@ -10,14 +10,50 @@ export type LoginSchema = z.infer<typeof loginSchema>
 export const registerSchema = z.object({
   names: z
     .string()
-    .min(1, 'Los nombres son obligatorios')
-    .max(100, 'Máximo 100 caracteres'),
+    .check(
+      z.minLength(1, 'Los nombres son obligatorios'),
+      z.maxLength(100, 'Máximo 100 caracteres'),
+    ),
   lastNames: z
     .string()
-    .min(1, 'Los apellidos son obligatorios')
-    .max(100, 'Máximo 100 caracteres'),
+    .check(
+      z.minLength(1, 'Los apellidos son obligatorios'),
+      z.maxLength(100, 'Máximo 100 caracteres'),
+    ),
   email: z.email('Correo electrónico inválido'),
-  password: z.string().min(6, 'Mínimo 6 caracteres'),
+  password: z.string().check(z.minLength(6, 'Mínimo 6 caracteres')),
 })
 
 export type RegisterSchema = z.infer<typeof registerSchema>
+
+interface ZodSchema {
+  safeParse(data: unknown): {
+    success: boolean
+    error?: { issues: Array<{ path: PropertyKey[]; message: string }> }
+  }
+}
+
+const toFormikErrors = (result: {
+  success: boolean
+  error?: { issues: Array<{ path: PropertyKey[]; message: string }> }
+}): Record<string, string> => {
+  if (result.success) return {}
+  const errors: Record<string, string> = {}
+  for (const issue of result.error?.issues ?? []) {
+    const path = issue.path
+      .filter(
+        (p): p is string | number =>
+          typeof p === 'string' || typeof p === 'number',
+      )
+      .join('.')
+    if (path && !errors[path]) {
+      errors[path] = issue.message
+    }
+  }
+  return errors
+}
+
+const validateWith = (schema: ZodSchema) => (values: Record<string, unknown>) =>
+  toFormikErrors(schema.safeParse(values))
+
+export { validateWith }

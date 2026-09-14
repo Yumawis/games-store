@@ -10,7 +10,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { useLogin } from '@/hooks/use-login'
 import { useAuth } from '@/lib/auth-context'
-import { loginSchema } from '@/lib/schemas/auth'
+import { loginSchema, validateWith } from '@/lib/schemas/auth'
 import type { ApiError } from '@/types/api'
 
 const LoginPage = () => {
@@ -21,7 +21,7 @@ const LoginPage = () => {
 
   const formik = useFormik({
     initialValues: { email: '', password: '' },
-    validationSchema: loginSchema,
+    validate: validateWith(loginSchema),
     onSubmit: (values) => {
       setFormError(null)
       loginMutation.mutate(values, {

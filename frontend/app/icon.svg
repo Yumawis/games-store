@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <title>Games Store</title>
+  <!-- Body -->
+  <rect x="2" y="8" width="28" height="16" rx="4" fill="#2d2d2d"/>
+  <!-- D-pad -->
+  <rect x="7" y="13" width="2" height="6" rx="0.5" fill="#f5f5f5"/>
+  <rect x="5" y="15" width="6" height="2" rx="0.5" fill="#f5f5f5"/>
+  <!-- Action buttons (arcade style) -->
+  <circle cx="21" cy="13" r="1.8" fill="#e74c3c"/>
+  <circle cx="25" cy="13" r="1.8" fill="#f39c12"/>
+  <circle cx="21" cy="17.5" r="1.8" fill="#2ecc71"/>
+  <circle cx="25" cy="17.5" r="1.8" fill="#3498db"/>
+  <!-- Start/Select -->
+  <rect x="13" y="17" width="3" height="1.5" rx="0.75" fill="#666"/>
+  <rect x="17" y="17" width="3" height="1.5" rx="0.75" fill="#666"/>
+</svg>
