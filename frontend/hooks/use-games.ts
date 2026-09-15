@@ -5,7 +5,7 @@ import type { ApiError, ApiResponse } from '../types/api'
 import type { CreateGameInput, Game } from '../types/game'
 
 const useGames = () => {
-  return useQuery<ApiResponse<Game[]>>({
+  return useQuery<ApiResponse<Game[]>, ApiError>({
     queryKey: gamesKeys.all,
     queryFn: getAllGames,
   })
