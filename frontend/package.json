@@ -6,12 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "format": "biome format --write ./app ./lib ./api ./types",
-    "format:check": "biome format ./app ./lib ./api ./types",
-    "lint": "biome lint ./app ./lib ./api ./types",
-    "lint:fix": "biome lint --write ./app ./lib ./api ./types",
-    "check": "biome check ./app ./lib ./api ./types",
-    "check:fix": "biome check --write ./app ./lib ./api ./types"
+    "format": "biome format --write ./app ./lib ./api ./types ./components ./hooks",
+    "format:check": "biome format ./app ./lib ./api ./types ./components ./hooks",
+    "lint": "biome lint ./app ./lib ./api ./types ./components ./hooks",
+    "lint:fix": "biome lint --write ./app ./lib ./api ./types ./components ./hooks",
+    "check": "biome check ./app ./lib ./api ./types ./components ./hooks",
+    "check:fix": "biome check --write ./app ./lib ./api ./types ./components ./hooks"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.9.1",

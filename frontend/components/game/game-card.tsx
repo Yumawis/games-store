@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import type { Game } from '@/types/game'
 
@@ -13,11 +14,13 @@ const GameCard = ({ game }: GameCardProps) => {
       </CardHeader>
       <CardContent className="space-y-4">
         {game.imageBase64 ? (
-          <div className="h-64 w-full overflow-hidden rounded-md bg-muted">
-            <img
+          <div className="relative h-64 w-full overflow-hidden rounded-md bg-muted">
+            <Image
               src={`data:image/png;base64,${game.imageBase64}`}
               alt={game.name}
-              className="h-full w-full object-cover"
+              fill
+              sizes="100%"
+              className="object-cover"
             />
           </div>
         ) : (
