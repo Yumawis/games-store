@@ -5,8 +5,6 @@ export const loginSchema = z.object({
   password: z.string().check(z.minLength(6, 'Mínimo 6 caracteres')),
 })
 
-export type LoginSchema = z.infer<typeof loginSchema>
-
 export const registerSchema = z.object({
   names: z
     .string()
@@ -23,8 +21,6 @@ export const registerSchema = z.object({
   email: z.email('Correo electrónico inválido'),
   password: z.string().check(z.minLength(6, 'Mínimo 6 caracteres')),
 })
-
-export type RegisterSchema = z.infer<typeof registerSchema>
 
 interface ZodSchema {
   safeParse(data: unknown): {

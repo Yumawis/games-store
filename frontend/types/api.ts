@@ -3,7 +3,7 @@ export interface ApiResponse<T> {
   result: T
 }
 
-export interface ApiErrorData {
+interface ApiErrorData {
   message: string
   error?: string
   errors?: Record<string, string>
