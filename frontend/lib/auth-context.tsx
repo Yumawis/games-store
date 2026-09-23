@@ -26,6 +26,13 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       setToken(storedToken)
     }
     setIsLoading(false)
+
+    auth.onUnauthorized(() => {
+      setUser(null)
+      setToken(null)
+    })
+
+    return () => auth.onUnauthorized(null)
   }, [])
 
   const setAuth = useCallback((u: User, t: string) => {

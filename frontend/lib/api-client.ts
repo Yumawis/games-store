@@ -8,10 +8,15 @@ const getAuthHeaders = (): Record<string, string> => {
   return token ? { Authorization: `Bearer ${token}` } : {}
 }
 
+let unauthorizedListener: (() => void) | null = null
+
 const handle401 = (): never => {
   if (typeof window !== 'undefined') {
     auth.clearToken()
-    window.location.href = '/'
+    unauthorizedListener?.()
+    if (window.location.pathname !== '/login') {
+      window.location.replace('/login')
+    }
   }
   throw new Error('Sesión expirada')
 }
@@ -29,7 +34,7 @@ const request = async <T>(
 
   const response = await fetch(url, { ...options, headers })
 
-  if (response.status === 401) {
+  if (response.status === 401 && !endpoint.startsWith('/auth')) {
     handle401()
   }
 
@@ -57,6 +62,10 @@ const auth = {
 
   getToken(): string | null {
     return localStorage.getItem('token')
+  },
+
+  onUnauthorized(listener: (() => void) | null): void {
+    unauthorizedListener = listener
   },
 }
 
