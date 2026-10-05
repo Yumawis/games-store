@@ -24,6 +24,9 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const storedToken = auth.getToken()
     if (storedToken) {
       setToken(storedToken)
+      setUser(auth.getUser())
+    } else {
+      auth.clearSession()
     }
     setIsLoading(false)
 
@@ -37,12 +40,13 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   const setAuth = useCallback((u: User, t: string) => {
     auth.setToken(t)
+    auth.setUser(u)
     setUser(u)
     setToken(t)
   }, [])
 
   const logout = useCallback(() => {
-    auth.clearToken()
+    auth.clearSession()
     setUser(null)
     setToken(null)
   }, [])

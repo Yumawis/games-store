@@ -1,4 +1,5 @@
 import type { ApiError } from '../types/api'
+import type { User } from '../types/user'
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_GAMES_STORE_API_URL ?? ''
 
@@ -12,7 +13,7 @@ let unauthorizedListener: (() => void) | null = null
 
 const handle401 = (): never => {
   if (typeof window !== 'undefined') {
-    auth.clearToken()
+    auth.clearSession()
     unauthorizedListener?.()
     if (window.location.pathname !== '/login') {
       window.location.replace('/login')
@@ -56,12 +57,27 @@ const auth = {
     localStorage.setItem('token', token)
   },
 
-  clearToken(): void {
-    localStorage.removeItem('token')
-  },
-
   getToken(): string | null {
     return localStorage.getItem('token')
+  },
+
+  setUser(user: User): void {
+    localStorage.setItem('user', JSON.stringify(user))
+  },
+
+  getUser(): User | null {
+    try {
+      const raw = localStorage.getItem('user')
+      return raw ? (JSON.parse(raw) as User) : null
+    } catch {
+      localStorage.removeItem('user')
+      return null
+    }
+  },
+
+  clearSession(): void {
+    localStorage.removeItem('token')
+    localStorage.removeItem('user')
   },
 
   onUnauthorized(listener: (() => void) | null): void {
