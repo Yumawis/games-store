@@ -28,7 +28,8 @@ const RegisterPage = () => {
     onSubmit: (values) => {
       setFormError(null)
       registerMutation.mutate(values, {
-        onSuccess: () => {
+        onSuccess: (response) => {
+          sessionStorage.setItem('registerSuccess', response.message)
           router.push('/login')
         },
         onError: (error: unknown) => {
