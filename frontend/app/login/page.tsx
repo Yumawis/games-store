@@ -3,7 +3,7 @@
 import { useFormik } from 'formik'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -18,15 +18,6 @@ const LoginPage = () => {
   const router = useRouter()
   const loginMutation = useLogin()
   const [formError, setFormError] = useState<string | null>(null)
-  const [successMessage, setSuccessMessage] = useState<string | null>(null)
-
-  useEffect(() => {
-    const message = sessionStorage.getItem('registerSuccess')
-    if (message) {
-      setSuccessMessage(message)
-      sessionStorage.removeItem('registerSuccess')
-    }
-  }, [])
 
   const formik = useFormik({
     initialValues: { email: '', password: '' },
@@ -54,11 +45,6 @@ const LoginPage = () => {
         </CardHeader>
         <CardContent>
           <form onSubmit={formik.handleSubmit} className="space-y-4">
-            {successMessage && (
-              <p className="text-sm text-green-600 dark:text-green-500">
-                {successMessage}
-              </p>
-            )}
             {formError && (
               <p className="text-sm text-destructive">{formError}</p>
             )}

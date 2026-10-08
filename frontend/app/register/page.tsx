@@ -4,6 +4,7 @@ import { useFormik } from 'formik'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
+import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -29,7 +30,7 @@ const RegisterPage = () => {
       setFormError(null)
       registerMutation.mutate(values, {
         onSuccess: (response) => {
-          sessionStorage.setItem('registerSuccess', response.message)
+          toast.success(response.message)
           router.push('/login')
         },
         onError: (error: unknown) => {
